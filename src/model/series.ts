@@ -736,6 +736,8 @@ export class Series<T extends SeriesType> extends PriceDataSource implements IDe
 				text: marker.text,
 				size: marker.size,
 				originalTime: marker.originalTime,
+				price: marker.price,
+				offset: marker.offset,
 			};
 		});
 	}

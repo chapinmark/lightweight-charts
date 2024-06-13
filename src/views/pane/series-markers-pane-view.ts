@@ -37,7 +37,7 @@ interface Offsets {
 
 type MarkerPositions = Record<SeriesMarkerPosition, boolean>;
 
-// eslint-disable-next-line max-params
+// eslint-disable-next-line max-params, complexity
 function fillSizeAndY(
 	rendererItem: SeriesMarkerRendererDataItem,
 	marker: InternalSeriesMarker<TimePointIndex>,
@@ -83,8 +83,13 @@ function fillSizeAndY(
 			offsets.belowBar += shapeSize + shapeMargin;
 			return;
 		}
+		case 'price': {
+			const price = marker.price ? parseFloat(marker.price) : 0;
+			const offset = marker.offset ? marker.offset : 0;
+			rendererItem.y = priceScale.priceToCoordinate(price, firstValue) + offset as Coordinate;
+			return;
+		}
 	}
-
 	ensureNever(marker.position);
 }
 
@@ -170,6 +175,7 @@ export class SeriesMarkersPaneView implements IUpdatablePaneView {
 					inBar: false,
 					aboveBar: false,
 					belowBar: false,
+					price: false,
 				}
 			);
 		}
@@ -191,6 +197,8 @@ export class SeriesMarkersPaneView implements IUpdatablePaneView {
 				internalId: marker.internalId,
 				externalId: marker.id,
 				text: undefined,
+				price: marker.price,
+				offset: marker.offset,
 			}));
 			this._dataInvalidated = false;
 		}

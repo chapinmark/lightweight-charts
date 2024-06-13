@@ -1,7 +1,7 @@
 /**
  * Represents the position of a series marker relative to a bar.
  */
-export type SeriesMarkerPosition = 'aboveBar' | 'belowBar' | 'inBar';
+export type SeriesMarkerPosition = 'aboveBar' | 'belowBar' | 'inBar' | 'price';
 
 /**
  * Represents the shape of a series marker.
@@ -42,7 +42,14 @@ export interface SeriesMarker<TimeType> {
 	 * @defaultValue `1`
 	 */
 	size?: number;
-
+	/**
+	 * The optional price location of the marker.
+	 */
+	price?: string;
+	/**
+	 * The optional price offset location of the marker.
+	 */
+	offset?: number;
 	/**
 	 * @internal
 	 */
