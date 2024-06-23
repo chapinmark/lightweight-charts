@@ -45,7 +45,7 @@ export interface SeriesMarker<TimeType> {
 	/**
 	 * The optional price location of the marker.
 	 */
-	price?: string;
+	price?: number;
 	/**
 	 * The optional price offset location of the marker.
 	 */

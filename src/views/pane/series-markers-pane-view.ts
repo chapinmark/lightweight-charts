@@ -84,7 +84,7 @@ function fillSizeAndY(
 			return;
 		}
 		case 'price': {
-			const price = marker.price ? parseFloat(marker.price) : 0;
+			const price = marker.price ? marker.price : 0;
 			const offset = marker.offset ? marker.offset : 0;
 			rendererItem.y = priceScale.priceToCoordinate(price, firstValue) + offset as Coordinate;
 			return;
